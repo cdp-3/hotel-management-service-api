@@ -6,13 +6,14 @@ import java.math.BigDecimal;
 import java.sql.Blob;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "hotel")
 public class Hotel {
 
     @Id
-    @Column(name = "hotel_id")
+    @Column(name = "hotel_id",length = 80)
     private String hotelId;
 
     @Column(name ="hotel_name",nullable = false,length = 100)
@@ -36,5 +37,11 @@ public class Hotel {
 
     @Column(name ="starting_from")
     private BigDecimal startingFrom;  //we don't use the double normally industrial project
+
+
+    //Mapping the relationship between tables(Entity)
+
+    @OneToMany(mappedBy = "hotel",cascade = CascadeType.ALL)
+    private List<Branch> branches;
 
 }
